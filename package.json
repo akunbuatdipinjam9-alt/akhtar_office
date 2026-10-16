@@ -1,0 +1,97 @@
+{
+  "name": "akhtar-office",
+  "version": "1.1.0",
+  "description": "Offline document, presentation and code editor",
+  "main": "main.js",
+  "author": "Akhtar",
+  "license": "MIT",
+  "scripts": {
+    "start": "electron .",
+    "dist:win": "electron-builder --win nsis --x64",
+    "pack:win": "electron-builder --win dir --x64"
+  },
+  "devDependencies": {
+    "electron": "^39.0.0",
+    "electron-builder": "^26.0.12"
+  },
+  "dependencies": {
+    "pptxgenjs": "^3.12.0",
+    "docx": "^9.5.1",
+    "cheerio": "^1.0.0",
+    "mammoth": "^1.9.0",
+    "adm-zip": "^0.5.16"
+  },
+  "build": {
+    "appId": "com.akhtar.office",
+    "productName": "Akhtar Office",
+    "asar": true,
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "index.html",
+      "main.js",
+      "preload.js",
+      "package.json",
+      "node_modules/**/*",
+      "renderer.js",
+      "styles.css"
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "artifactName": "Akhtar-Office-Setup-${version}.${ext}"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Akhtar Office"
+    },
+    "fileAssociations": [
+      {
+        "ext": "akoffice",
+        "name": "Akhtar Office Project",
+        "description": "Akhtar Office Project",
+        "role": "Editor"
+      },
+      {
+        "ext": "docx",
+        "name": "Word Document",
+        "description": "Microsoft Word Document",
+        "role": "Editor"
+      },
+      {
+        "ext": "pptx",
+        "name": "PowerPoint Presentation",
+        "description": "Microsoft PowerPoint Presentation",
+        "role": "Editor"
+      },
+      {
+        "ext": "md",
+        "name": "Markdown File",
+        "description": "Markdown source file",
+        "role": "Editor"
+      },
+      {
+        "ext": "html",
+        "name": "HTML File",
+        "description": "HTML source file",
+        "role": "Editor"
+      },
+      {
+        "ext": "js",
+        "name": "JavaScript File",
+        "description": "JavaScript source file",
+        "role": "Editor"
+      }
+    ]
+  }
+}
